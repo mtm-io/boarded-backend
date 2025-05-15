@@ -3,7 +3,9 @@
 ### After you clone this repo create a virtual environment:
 
 win/mac\
-```python -m venv .venv```
+```console
+python -m venv .venv
+```
 
 ---
 
