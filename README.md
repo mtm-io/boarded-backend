@@ -8,7 +8,7 @@ win/mac\
 ### Activate it:
 
 win\
-`.venv\Scripts\Activate.ps1`
+`.venv\Scripts\Activate.ps1`\
 mac\
 `source .venv/bin/activate`
 
