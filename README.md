@@ -1,11 +1,11 @@
 ## How to work with it
 
-**After you clone this repo create a virtual environment:**
+### After you clone this repo create a virtual environment:
 
 win/mac\
 `python -m venv .venv`
 
-**Activate it:**
+### Activate it:
 
 win\
 `.venv\Scripts\Activate.ps1`
