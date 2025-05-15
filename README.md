@@ -2,7 +2,7 @@
 
 ### After you clone this repo create a virtual environment:
 
-win/mac\
+win/mac
 ```console
 python -m venv .venv
 ```
@@ -11,21 +11,29 @@ python -m venv .venv
 
 ### Activate it:
 
-win\
-`.venv\Scripts\Activate.ps1`
+win
+```console
+.venv\Scripts\Activate.ps1
+```
 
-mac\
-`source .venv/bin/activate`
+mac
+```console
+source .venv/bin/activate
+```
 
 ---
 
 ### Check the Virtual Environment is Active:
 
-win\
-`Get-Command python`
+win
+```console
+Get-Command python
+```
 
-mac\
-`which python`
+mac
+```console
+which python
+```
 
 <br>
 
@@ -36,19 +44,25 @@ mac\
 
 ### Upgrade pip:
 
-`python -m pip install --upgrade pip`
+```console
+python -m pip install --upgrade pip
+```
 
 ---
 
 ### Install Packages from `requirements.txt`:
 
-`pip install -r requirements.txt`
+```console
+pip install -r requirements.txt
+```
 
 ---
 
 ### Run the server:
 
-` python -m uvicorn main:app --reload`
+```console
+python -m uvicorn main:app --reload
+```
 
 <br>
 
