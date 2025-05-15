@@ -77,3 +77,5 @@ INFO:     Application startup complete.
 > ```console
 > $ deactivate
 > ```
+
+Reference [fastapi Docs](https://fastapi.tiangolo.com/virtual-environments/#__tabbed_3_2).
