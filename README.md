@@ -3,14 +3,14 @@
 ### After you clone this repo create a virtual environment:
 
 win/mac\
-`python -m venv .venv`
+```python -m venv .venv```
 
 ---
 
 ### Activate it:
 
 win\
-`.venv\Scripts\Activate.ps1`\
+`.venv\Scripts\Activate.ps1`
 
 mac\
 `source .venv/bin/activate`
