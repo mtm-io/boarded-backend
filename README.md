@@ -2,22 +2,22 @@
 
 **After you clone this repo create a virtual environment:**
 
-win/mac
+win/mac\
 `python -m venv .venv`
 
 **Activate it:**
 
-win
+win\
 `.venv\Scripts\Activate.ps1`
-mac
+mac\
 `source .venv/bin/activate`
 
 **Check the Virtual Environment is Active**
 
-win
+win\
 `Get-Command python`
 
-mac
+mac\
 `which python`
 
 > [!NOTE]
