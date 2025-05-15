@@ -4,7 +4,7 @@
 
 win/mac
 ```console
-python -m venv .venv
+$ python -m venv .venv
 ```
 
 ---
@@ -13,12 +13,12 @@ python -m venv .venv
 
 win
 ```console
-.venv\Scripts\Activate.ps1
+$ .venv\Scripts\Activate.ps1
 ```
 
 mac
 ```console
-source .venv/bin/activate
+$ source .venv/bin/activate
 ```
 
 ---
@@ -27,12 +27,12 @@ source .venv/bin/activate
 
 win
 ```console
-Get-Command python
+$ Get-Command python
 ```
 
 mac
 ```console
-which python
+$ which python
 ```
 
 <br>
@@ -45,7 +45,7 @@ which python
 ### Upgrade pip:
 
 ```console
-python -m pip install --upgrade pip
+$ python -m pip install --upgrade pip
 ```
 
 ---
@@ -53,7 +53,7 @@ python -m pip install --upgrade pip
 ### Install Packages from `requirements.txt`:
 
 ```console
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ---
@@ -61,11 +61,13 @@ pip install -r requirements.txt
 ### Run the server:
 
 ```console
-python -m uvicorn main:app --reload
+$ python -m uvicorn main:app --reload
 ```
 
 <br>
 
 > [!IMPORTANT]
 > Once you are done working on your project you should deactivate the virtual environment.
-> `deactivate`
+> ```console
+> $ deactivate
+> ```
