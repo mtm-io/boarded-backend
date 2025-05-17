@@ -4,11 +4,13 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException,  status
 from fastapi.security import OAuth2PasswordRequestForm
 
-from models.pyd.user import RefreshToken, UserInDB
+from models.pyd.user import IdToken, RefreshToken, UserInDB
 from dependencies import db_dependency
 from models.alchemy.user import User
 from models.pyd.user import UserIn, UserInDB
-from utils import ACCESS_TOKEN_EXPIRE_MINUTES, REFRESH_TOKEN_EXPIRE_DAYS, authenticate_user, create_access_token, create_refresh_token, decode_token, get_password_hash
+from utils import ACCESS_TOKEN_EXPIRE_MINUTES, GOOGLE_CLIENT_ID, REFRESH_TOKEN_EXPIRE_DAYS, authenticate_user, create_access_token, create_refresh_token, decode_token, get_password_hash
+from google.oauth2 import id_token
+from google.auth.transport import requests
 
 router = APIRouter(
     tags=["auth"],
@@ -76,3 +78,38 @@ async def refresh_access_token(refresh_token: RefreshToken, db: db_dependency):
 
        access_token = create_access_token(data={"sub": user.username}, expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
        return {"access_token": access_token, "token_type": "bearer"} 
+
+
+@router.post("/auth/google")
+def verify_id_token(token: IdToken, db: db_dependency):
+    try:
+        # Verify and decode the token
+        id_info = id_token.verify_oauth2_token(
+            token.id_token,
+            requests.Request(),
+            GOOGLE_CLIENT_ID  
+        )
+
+        #  Checking issuer
+        if id_info['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+
+        user = db.query(User).filter_by(username=id_info["sub"]).first()
+
+        if not user:
+            db_user = User(
+                username=id_info["sub"],
+                email=id_info["email"],
+                name=id_info.get("name"),
+                picture=id_info.get("picture"),
+            )
+            db.add(db_user)
+            db.commit()
+            db.refresh(db_user)
+            
+
+        access_token = create_access_token(data={"sub": id_info["sub"]}, expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+        refresh_token = create_refresh_token(data={"sub": id_info["sub"], "refresh": True}, expires_delta=timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS))
+        return {"access_token": access_token, "token_type": "bearer", "refresh_token": refresh_token}
+    except ValueError as e:
+        raise HTTPException(status_code=401, detail=str(e))

@@ -8,6 +8,7 @@ from models.alchemy.user import User
 from models.pyd.user import UserInDB
 
 SECRET = "692231733f2092790aff8c5aa3a874480775d5c241cf09de0a876344350abf70"
+GOOGLE_CLIENT_ID = "615112230301-vid38eo6tkpu2bps9h648t2s8i7b46p2.apps.googleusercontent.com"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1
 REFRESH_TOKEN_EXPIRE_DAYS = 90
@@ -70,4 +71,4 @@ async def decode_token(token: str, db) -> UserInDB | None:
         user_from_db = db.query(User).filter(User.username == username).first()
         if not user_from_db:
                 return None
-        return UserInDB( username=user_from_db.username, email=user_from_db.email, id=user_from_db.id)
+        return UserInDB(username=user_from_db.username, email=user_from_db.email, id=user_from_db.id, name=user_from_db.name, picture=user_from_db.picture)
