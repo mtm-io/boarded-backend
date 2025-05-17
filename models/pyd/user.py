@@ -12,3 +12,7 @@ class UserInDB(User):
 
 class UserIn(User):
     password: str
+
+
+class RefreshToken(BaseModel):
+    refresh_token: str
