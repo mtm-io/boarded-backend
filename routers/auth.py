@@ -8,7 +8,7 @@ from models.pyd.user import IdToken, RefreshToken, UserInDB
 from dependencies import db_dependency
 from models.alchemy.user import User
 from models.pyd.user import UserIn, UserInDB
-from utils import ACCESS_TOKEN_EXPIRE_MINUTES, GOOGLE_CLIENT_ID, REFRESH_TOKEN_EXPIRE_DAYS, authenticate_user, create_access_token, create_refresh_token, decode_token, get_password_hash
+from utils import ACCESS_TOKEN_EXPIRE_MINUTES, GOOGLE_WEB_CLIENT_ID,GOOGLE_IOS_CLIENT_ID, REFRESH_TOKEN_EXPIRE_DAYS, authenticate_user, create_access_token, create_refresh_token, decode_token, get_password_hash
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
@@ -87,7 +87,7 @@ def verify_id_token(token: IdToken, db: db_dependency):
         id_info = id_token.verify_oauth2_token(
             token.id_token,
             requests.Request(),
-            GOOGLE_CLIENT_ID  
+            [GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID]
         )
 
         #  Checking issuer

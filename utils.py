@@ -8,7 +8,8 @@ from models.alchemy.user import User
 from models.pyd.user import UserInDB
 
 SECRET = "692231733f2092790aff8c5aa3a874480775d5c241cf09de0a876344350abf70"
-GOOGLE_CLIENT_ID = "615112230301-vid38eo6tkpu2bps9h648t2s8i7b46p2.apps.googleusercontent.com"
+GOOGLE_WEB_CLIENT_ID = "615112230301-vid38eo6tkpu2bps9h648t2s8i7b46p2.apps.googleusercontent.com"
+GOOGLE_IOS_CLIENT_ID = "615112230301-crgaciahtdvjpbir4jdmma4i9dkksetu.apps.googleusercontent.com"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1
 REFRESH_TOKEN_EXPIRE_DAYS = 90
